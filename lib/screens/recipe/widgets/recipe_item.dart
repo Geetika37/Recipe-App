@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/constants/size.dart';
+import 'package:recipe_app/constants/textstyle.dart';
 import 'package:recipe_app/screens/recipe/model/recipe_model.dart';
 import 'package:recipe_app/utils/color.dart';
 
@@ -42,9 +44,39 @@ class RecipeItem extends StatelessWidget {
                 right: 0,
                 left: 0,
                 child: Container(
-                  height: 30,
+                  height: 40,
                   decoration: const BoxDecoration(
-                    color: Colors.black26,
+                    color: Colors.black87,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            recipe[index].name,
+                            style: lexend(
+                                AppColor.appBgColor, 16, FontWeight.w500),
+                          ),
+                        ),
+                        const Icon(
+                          Icons.star,
+                          color: Color.fromARGB(255, 234, 212, 11),
+                          size: 15,
+                        ),
+                        SizedBox(width: screenWidth * 0.02),
+                        Text(
+                          recipe[index].rating.toString(),
+                          style:
+                              lexend(AppColor.appBgColor, 15, FontWeight.w400),
+                        ),
+                        SizedBox(width: screenWidth * 0.03),
+                      ],
+                    ),
                   ),
                 ),
               )
