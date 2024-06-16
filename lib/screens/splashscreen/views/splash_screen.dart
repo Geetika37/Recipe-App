@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/recipe_app_logo.png',
+                    'assets/images/recipe_app_logo.png',
                     height: 180,
                     width: 160,
                   ),
