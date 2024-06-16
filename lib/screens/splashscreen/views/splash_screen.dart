@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:recipe_app/constants/size.dart';
 import 'package:recipe_app/constants/textstyle.dart';
 import 'package:recipe_app/screens/splashscreen/controller/splash_controller.dart';
 import 'package:recipe_app/utils/color.dart';
