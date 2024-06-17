@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
                     width: 160,
                   ),
                   Text(
-                    'Recipe App',
+                    'RecipE BooK',
                     style: lexend(AppColor.appBgColor, 20, FontWeight.w600),
                   )
                 ],

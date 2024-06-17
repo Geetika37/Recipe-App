@@ -48,7 +48,7 @@ class _RecipeHomescreenState extends State<RecipeHomescreen> {
         ),
         title: Center(
           child: Text(
-            'REcipE BooK',
+            'RecipE BooK',
             style: lexend(AppColor.white, 24, FontWeight.w600),
           ),
         ),

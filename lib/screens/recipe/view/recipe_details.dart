@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:recipe_app/constants/size.dart';
 import 'package:recipe_app/constants/textstyle.dart';
 import 'package:recipe_app/screens/recipe/model/recipe_model.dart';
 import 'package:recipe_app/screens/recipe/widgets/positioned_container.dart';
+import 'package:recipe_app/screens/recipe/widgets/recipedetail_appbar.dart';
+import 'package:recipe_app/screens/recipe/widgets/recipedetail_title.dart';
 import 'package:recipe_app/utils/color.dart';
 
 class RecipeDetails extends StatelessWidget {
@@ -13,31 +15,15 @@ class RecipeDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.black,
-      appBar: AppBar(
-        elevation: 5,
-        backgroundColor: AppColor.black,
-        leading: IconButton.filledTonal(
-          color: AppColor.black,
-          iconSize: 20,
-          style: ButtonStyle(
-            backgroundColor:
-                WidgetStateProperty.all<Color>(AppColor.appBgColor),
-          ),
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        title: Text(
-          'Cuisine : ${recipe.cuisine}',
-          style: lexend(AppColor.white, 22, FontWeight.w600),
-        ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(screenHeight * 0.07),
+        child: RecipeDetailAppbar(recipe: recipe),
       ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Stack(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
@@ -45,20 +31,45 @@ class RecipeDetails extends StatelessWidget {
                     recipe.image,
                   ),
                 ),
+                Positioned(
+                  right: 10,
+                  left: 10,
+                  bottom: -15,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: PostionedContainer(recipe: recipe),
+                  ),
+                )
               ],
             ),
-          ),
-          Positioned(
-            right: 10,
-            left: 10,
-            top: 300,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: PostionedContainer(recipe: recipe),
+            SizedBox(height: screenHeight * 0.03),
+            const RecipeDetailTitle(text: 'Ingredients'),
+            SizedBox(height: screenHeight * 0.01),
+            ...List.generate(
+              recipe.ingredients.length,
+              (index) {
+                return Text(
+                  '- ${recipe.ingredients[index]}',
+                  style: lexend(AppColor.white, 15, FontWeight.w300),
+                );
+              },
             ),
-          )
-        ],
+            SizedBox(height: screenHeight * 0.03),
+            const RecipeDetailTitle(text: 'Instructions'),
+            SizedBox(height: screenHeight * 0.01),
+            ...List.generate(
+              recipe.instructions.length,
+              (index) {
+                return Text(
+                  '- ${recipe.instructions[index]}',
+                  style: lexend(AppColor.white, 15, FontWeight.w300),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
